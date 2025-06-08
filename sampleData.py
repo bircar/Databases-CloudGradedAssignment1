@@ -28,16 +28,16 @@ destinations = [
 ]
 
 aircrafts = [
-    (1, "Boeing 737", 160),
-    (2, "Airbus A320", 150),
-    (3, "Boeing 777", 300),
-    (4, "Airbus A380", 500),
-    (5, "Embraer E190", 100),
-    (6, "Bombardier CRJ900", 90),
-    (7, "Boeing 747", 400),
-    (8, "Airbus A350", 350),
-    (9, "McDonnell Douglas MD-88", 155),
-    (10, "ATR 72", 70)
+    (1, "Boeing 737", "Delta Air Lines", 160),
+    (2, "Airbus A320", "American Airlines", 150),
+    (3, "Boeing 777", "British Airways", 300),
+    (4, "Airbus A380", "Emirates", 500),
+    (5, "Embraer E190", "JetBlue", 100),
+    (6, "Bombardier CRJ900", "Lufthansa", 90),
+    (7, "Boeing 747", "Qantas", 400),
+    (8, "Airbus A350", "Singapore Airlines", 350),
+    (9, "McDonnell Douglas MD-88", "Delta Air Lines", 155),
+    (10, "ATR 72", "Air New Zealand", 70)
 ]
 
 flights = [
