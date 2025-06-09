@@ -50,6 +50,11 @@ flights = [
     (7, 7, 8, 7),   # Chris Miller flying to Rome with Boeing 747
     (8, 8, 9, 8),   # Emma Davis flying to Madrid with Airbus A350
     (9, 9, 10, 9),  # Robert Clark flying to Sydney with McDonnell Douglas MD-88
-    (10, 10, 1, 10) # Olivia Moore flying to London with ATR 72
+    (10, 10, 1, 10), # Olivia Moore flying to London with ATR 72
+    (11, 1, 3, 1),   # John Smith flying to New York with Boeing 737 
+    (12, 2, 2, 2),   # Alice Brown flying to Paris with Airbus A320 
+    (13, 3, 2, 3),   # David Wilson flying to Paris with Boeing 777 
+    (14, 4, 5, 1),   # Karen Jones flying to Tokyo with Boeing 737 
+    (15, 5, 6, 2)    # Michael Lee flying to Toronto with Airbus A320
 ]
 

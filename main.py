@@ -3,7 +3,7 @@ from dbConnection import get_connection
 from schema import initialiseTables
 from populateDatabase import populate_database
 
-conn = get_connection("flights")
+conn = get_connection()
 
 print("Database connection established")
 
@@ -12,6 +12,9 @@ print ("Table created successfully")
 
 populate_database()
 print("Database populated successfully")
+
+print("What would you like to do?")
+
 
 
 conn.close
