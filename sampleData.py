@@ -41,15 +41,15 @@ aircrafts = [
 ]
 
 flights = [
-    (1, 1, 1, 2, "Manchester", "2025-06-08 09:00", "2025-06-08 11:30"),
-    (2, 2, 2, 3, "London", "2025-06-08 14:00", "2025-06-08 17:00"),
-    (3, 3, 3, 4, "Paris", "2025-06-09 07:00", "2025-06-09 15:00"),
-    (4, 4, 4, 5, "Berlin", "2025-06-10 12:00", "2025-06-10 23:00"),
-    (5, 5, 5, 6, "Rome", "2025-06-11 06:00", "2025-06-11 12:00"),
-    (6, 6, 6, 1, "New York", "2025-06-12 20:00", "2025-06-13 08:00"),
-    (7, 7, 7, 8, "Madrid", "2025-06-13 10:30", "2025-06-13 14:30"),
-    (8, 8, 8, 9, "Tokyo", "2025-06-14 16:00", "2025-06-15 01:00"),
-    (9, 9, 9, 10, "Toronto", "2025-06-15 07:00", "2025-06-16 00:00"),
-    (10, 10, 10, 1, "Sydney", "2025-06-16 06:00", "2025-06-16 18:00")
+    (1, 1, 2, 1),   # John Smith flying to Paris with Boeing 737
+    (2, 2, 3, 2),   # Alice Brown flying to New York with Airbus A320
+    (3, 3, 4, 3),   # David Wilson flying to Dubai with Boeing 777
+    (4, 4, 5, 4),   # Karen Jones flying to Tokyo with Airbus A380
+    (5, 5, 6, 5),   # Michael Lee flying to Toronto with Embraer E190
+    (6, 6, 7, 6),   # Sophia Taylor flying to Berlin with Bombardier CRJ900
+    (7, 7, 8, 7),   # Chris Miller flying to Rome with Boeing 747
+    (8, 8, 9, 8),   # Emma Davis flying to Madrid with Airbus A350
+    (9, 9, 10, 9),  # Robert Clark flying to Sydney with McDonnell Douglas MD-88
+    (10, 10, 1, 10) # Olivia Moore flying to London with ATR 72
 ]
 

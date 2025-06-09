@@ -1,7 +1,7 @@
 from sampleData import pilots, destinations, aircrafts, flights
 from dbConnection import get_connection
 
-# This function populates the database with thw sample data.
+# This function populates the database with the sample data.
 def populate_database():
     conn = get_connection()
     

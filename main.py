@@ -1,14 +1,17 @@
 import sqlite3
 from dbConnection import get_connection
-from schema import create_tables
+from schema import initialiseTables
 from populateDatabase import populate_database
 
-conn = get_connection()
+conn = get_connection("flights")
 
 print("Database connection established")
 
-create_tables(conn)
+initialiseTables(conn)
 print ("Table created successfully")
+
+populate_database()
+print("Database populated successfully")
 
 
 conn.close
