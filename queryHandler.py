@@ -3,8 +3,18 @@
 from queries import *
 
 chosen_query = {
-        "1": retrieve_flights_by_destination,
-        "2": add_new_flight
+    "1": retrieve_flights_by_destination,
+    "2": add_new_flight,
+    "3": assign_pilot_to_flight,
+    "4": view_pilot_schedule,
+    }
+
+# Dictionary mapping input choices to required input prompts
+required_criteria = {
+    "1": ["Enter the destination ID to search for flights: "],
+    "2": ["Enter pilot ID: ", "Enter destination ID: ", "Enter aircraft ID: "],
+    "3": ["Enter pilot ID: ", "Enter flight ID: "],
+    "4": ["Enter pilot ID to view schedule: "],
     }
 
 def handle_query(input_choice):
@@ -12,10 +22,7 @@ def handle_query(input_choice):
     return chosen_query[input_choice]
 
 def get_criteria(input_choice):
-    if input_choice == "1":
-        return input("Enter the destination ID to search for flights: ")
-    elif input_choice == "2":
-        pilot_id = input("Enter pilot ID: ")
-        destination_id = input("Enter destination ID: ")
-        aircraft_id = input("Enter aircraft ID: ")
-        return (pilot_id, destination_id, aircraft_id)
+    prompts = required_criteria[input_choice]
+    responses = [input(prompt) for prompt in prompts]
+    return responses
+

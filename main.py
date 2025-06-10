@@ -26,7 +26,11 @@ print("Welcome to the Flight Management System!")
 
 while is_menu_active:
     input_choice = input("""What would you like to do? Enter the number of the action you want to perform:\n
-    Enter 1 to retrieve flights by destination:\n 
+    1 : Retrieve flights by destination:\n 
+    2 : Add a new flight:\n
+    3 : Assign a pilot to a flight:\n
+    4 : View a pilot's schedule:\n
+        
     Type x to close.""")
     if input_choice == "x":
         print("Exiting the program")
@@ -35,6 +39,7 @@ while is_menu_active:
 
     selected_query = handle_query(input_choice)
     criteria = get_criteria(input_choice)
+
     selected_query(cursor, criteria)
     conn.commit()
     continue
