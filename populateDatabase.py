@@ -5,12 +5,10 @@ from dbConnection import get_connection
 def populate_database():
     conn = get_connection()
     
-    conn.executemany("INSERT INTO pilot (PilotID, first_name, last_name, license_number) VALUES (?, ?, ?, ?)", pilots)
-    conn.executemany("INSERT INTO destination (DestinationID, city, country, airport_code) VALUES (?, ?, ?, ?)", destinations)
-    conn.executemany("INSERT INTO aircraft (AircraftID, Airline, model, capacity) VALUES (?, ?, ?, ?)", aircrafts)
-    conn.executemany("INSERT INTO flight (FlightID, pilot_id, destination_id, aircraft_id) VALUES (?, ?, ?, ?)", flights)
+    conn.executemany("INSERT INTO pilot (pilot_id, first_name, last_name, license_number) VALUES (?, ?, ?, ?)", pilots)
+    conn.executemany("INSERT INTO destination (destination_id, city, country, airport_code) VALUES (?, ?, ?, ?)", destinations)
+    conn.executemany("INSERT INTO aircraft (aircraft_id, Airline, model, capacity) VALUES (?, ?, ?, ?)", aircrafts)
+    conn.executemany("INSERT INTO flight (flight_id, pilot_id, destination_id, aircraft_id) VALUES (?, ?, ?, ?)", flights)
     
     conn.commit()
-    print("Database populated successfully")
-    
     conn.close()

@@ -1,0 +1,8 @@
+#DELETE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+db_path = conn.execute("PRAGMA database_list").fetchone()[2]
+conn.close()
+if os.path.exists(db_path):
+    os.remove(db_path)
+    print("Database deleted successfully")
+else:
+    print("Database file not found")
