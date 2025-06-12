@@ -36,6 +36,8 @@ def initialiseTables(conn):
             aircraft_id INTEGER,
             departure_date_and_time TEXT,
             arrival_date_and_time TEXT,
+            status VARCHAR(20),
+            origin VARCHAR(100),
             FOREIGN KEY (pilot_id) REFERENCES pilot(pilot_id),                   
             FOREIGN KEY (destination_id) REFERENCES destination(destination_id),
             FOREIGN KEY (aircraft_id) REFERENCES aircraft(aircraft_id)
