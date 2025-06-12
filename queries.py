@@ -57,7 +57,7 @@ def retrieve_flights_by_criteria(cursor, criteria_and_value):
             print("Pilot:", row[9], row[10])
             print("Status:", row[11], "Origin:", row[12], "\n")
     else:
-        print("No flights found for the given criteria.")
+        print("\nNo flights found for the given criteria.")
 
 # This query adds a new flight to the database using the provided flight data. n.b., the flight_id is auto-incremented, so it does not need to be provided.
 def add_new_flight(cursor, flight_data):
@@ -66,7 +66,7 @@ def add_new_flight(cursor, flight_data):
         VALUES (?, ?, ?)
     """
     cursor.execute(query, flight_data)
-    print("New flight added successfully.")
+    print("\nNew flight added successfully.")
 
 # This query assigns a pilot to a flight by updating the pilot_id in the flight table for the specified flight_id.
 def assign_pilot_to_flight(cursor, pilot_and_flight_id):
@@ -76,7 +76,7 @@ def assign_pilot_to_flight(cursor, pilot_and_flight_id):
         WHERE flight_id = ?
     """
     cursor.execute(query, pilot_and_flight_id)
-    print("Pilot assigned to flight successfully.")
+    print("\nPilot assigned to flight successfully.")
 
 # This query displays the schedule for a specific pilot based on their ID, ordered by departure date.
 def view_pilot_schedule(cursor, pilot_id):
@@ -105,7 +105,7 @@ def view_pilot_schedule(cursor, pilot_id):
             print("Pilot:", row[8], row[9])
             print("Status:", row[10], "Origin:", row[11], "\n")                     
     else:
-        print(f"No flights found for Pilot ID {pilot_id}.")
+        print(f"\nNo flights found for Pilot ID {pilot_id}.")
 
 # This query retrieves flights scheduled between the two specified date/time values, ordered by earliest departure time.
 def retrieve_departures_between_datetimes(cursor, start_and_end_datetimes):
@@ -133,7 +133,7 @@ def retrieve_departures_between_datetimes(cursor, start_and_end_datetimes):
                 print("Pilot:", row[8], row[9])
                 print("Status:", row[10], "Origin:", row[11], "\n")
     else:
-            print("No flights found in the specified date range.")
+            print("\nNo flights found in the specified date range.")
 
 # This query retrieves fligths scheduled to arrive bettwen two specified date/time values, ordered by earliest arrival time.
 def retrieve_arrivals_between_datetimes(cursor, start_and_end_datetimes):
@@ -161,7 +161,7 @@ def retrieve_arrivals_between_datetimes(cursor, start_and_end_datetimes):
                 print("Pilot:", row[8], row[9])
                 print("Status:", row[10], "Origin:", row[11], "\n")
     else:
-            print("No flights found in the specified date range.")
+            print("\nNo flights found in the specified date range.")
 
 def update_flight_schedule(cursor, flight_data):
     # Flight data will be input by the user in the wrong order for the update query, so we need to rearrange it.
@@ -173,5 +173,36 @@ def update_flight_schedule(cursor, flight_data):
         WHERE flight_id = ?
     """
     cursor.execute(query, query_values)
-    print("Flight schedule updated successfully.")
+    print("\nFlight schedule updated successfully.")
 
+# This query deletes a flight from the database based on the provided flight_id.
+def delete_flight(cursor, flight_id):
+    query = """
+        DELETE FROM flight
+        WHERE flight_id = ?
+    """
+    cursor.execute(query, flight_id)
+    print("\nFlight deleted successfully.")
+
+# This query simply returns all flights in the database, ordered by departure date and time.
+def view_all_flights(cursor, placeholder): # Placeholder is requir to match required arguments for the query handler
+    query = """
+        SELECT *
+        FROM flight
+        ORDER BY flight.departure_date_and_time
+    """
+    cursor.execute(query)
+    flights = cursor.fetchall()
+
+    if flights:
+        for row in flights:
+            print("Flight ID:", row[0])
+            print("Pilot ID:", row[1])
+            print("Destination ID:", row[2])
+            print("Aircraft ID:", row[3])
+            print("Departure Date and Time:", row[4])
+            print("Arrival Date and Time:", row[5])
+            print("Status:", row[6])
+            print("Origin:", row[7], "\n")
+    else:
+        print("\nNo flights found in the database.")

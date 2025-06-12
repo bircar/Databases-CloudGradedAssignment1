@@ -35,8 +35,8 @@ while is_menu_active:
     5 : View all flights departing within time period:
     6 : View all flights arriving within time period:                    
     7 : Update flight schedule:
-                         
     8 : Delete a flight:
+                         
     9 : View all flights:
     10 : Retrieve number of flights by criteria:
     
@@ -47,14 +47,19 @@ while is_menu_active:
         break
 
     selected_query = handle_query(input_choice)
-    # The query handler returns the function corresponding to the user's input, or None if the choice is invalid.
+    # The query handler module returns the function corresponding to the user's input, or None if the choice is invalid.
     if selected_query is None:
         continue
+
+    # If the selected query is valid, get the required criteria from the user
     criteria = get_criteria(input_choice)
     selected_query(cursor, criteria)
+
+    # Commit the changes to the database after successful execution of the query
     conn.commit()
     continue
 
+# Close the cursor and database connection
 cursor.close()
 conn.close()
 print("Database connection closed")

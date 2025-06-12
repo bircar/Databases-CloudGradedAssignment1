@@ -11,6 +11,8 @@ chosen_query = {
     "5": retrieve_departures_between_datetimes,
     "6": retrieve_arrivals_between_datetimes,
     "7": update_flight_schedule,
+    "8": delete_flight,
+    "9": view_all_flights,
     }
 
 
@@ -23,6 +25,8 @@ required_criteria = {
     "5": ["Enter start date and time (YYYY-MM-DD HH:MM:SS): ", "Enter end date and time (YYYY-MM-DD HH:MM:SS): "],
     "6": ['Enter start date and time (YYYY-MM-DD HH:MM:SS): ', 'Enter end date and time (YYYY-MM-DD HH:MM:SS): '],
     "7": ["Enter flight ID to update: ", "Enter new departure date and time (YYYY-MM-DD HH:MM:SS): ", "Enter new arrival date and time (YYYY-MM-DD HH:MM:SS): ", "Enter new flight status ('ON TIME', 'DELAYED' or 'DEPARTED'): "],
+    "8": ["Enter flight ID to delete: "],
+    "9": [],  # No criteria needed for viewing all flights
     }
 
 def handle_query(input_choice):
