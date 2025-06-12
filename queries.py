@@ -7,7 +7,8 @@ def retrieve_flights_by_criteria(cursor, criteria_and_value):
     
     # Map user input search field to actual DB columns
     criteria_map = {
-        'airport_code': 'destination.airport_code',
+        'destination': 'destination.airport_code',
+        'origin': 'flight.origin',
         'airline': 'aircraft.Airline',
         'departure_date': 'flight.departure_date_and_time',
     }
@@ -22,7 +23,8 @@ def retrieve_flights_by_criteria(cursor, criteria_and_value):
         query = f"""
             SELECT flight.flight_id, flight.departure_date_and_time, flight.arrival_date_and_time, destination.city, destination.country, destination.airport_code,
                    aircraft.model, aircraft.Airline, aircraft.capacity,
-                   pilot.first_name, pilot.last_name, pilot.license_number
+                   pilot.first_name, pilot.last_name,
+                   flight.status, flight.origin
             FROM flight
             NATURAL JOIN destination
             NATURAL JOIN aircraft
@@ -35,7 +37,8 @@ def retrieve_flights_by_criteria(cursor, criteria_and_value):
         query = f"""
             SELECT flight.flight_id, flight.departure_date_and_time, flight.arrival_date_and_time, destination.city, destination.country, destination.airport_code,
                    aircraft.model, aircraft.Airline, aircraft.capacity,
-                   pilot.first_name, pilot.last_name, pilot.license_number
+                   pilot.first_name, pilot.last_name,
+                   flight.status, flight.origin
             FROM flight
             NATURAL JOIN destination
             NATURAL JOIN aircraft
@@ -51,7 +54,8 @@ def retrieve_flights_by_criteria(cursor, criteria_and_value):
             print("Departure Time:", row[1], "Arrival Time:", row[2])
             print("Destination:", row[3], row[4], "Airport Code:", row[5])
             print("Aircraft:", row[6], row[7], "Capacity:", row[8])
-            print("Pilot:", row[9], row[10], "License Number:", row[11], "\n")
+            print("Pilot:", row[9], row[10])
+            print("Status:", row[11], "Origin:", row[12], "\n")
     else:
         print("No flights found for the given criteria.")
 
@@ -79,7 +83,8 @@ def view_pilot_schedule(cursor, pilot_id):
     query = """
         SELECT flight.flight_id, flight.departure_date_and_time, destination.city, destination.country, destination.airport_code,
                aircraft.model, aircraft.Airline, aircraft.capacity,
-               pilot.first_name, pilot.last_name, pilot.license_number
+               pilot.first_name, pilot.last_name,
+               flight.status, flight.origin
         FROM flight
         NATURAL JOIN destination
         NATURAL JOIN aircraft
@@ -97,7 +102,8 @@ def view_pilot_schedule(cursor, pilot_id):
             print("Departure Time:", row[1])
             print("Destination:", row[2], row[3], "Airport Code:", row[4])
             print("Aircraft:", row[5], row[6], "Capacity:", row[7])
-            print("Pilot:", row[8], row[9], "License Number:", row[10], "\n")                     
+            print("Pilot:", row[8], row[9])
+            print("Status:", row[10], "Origin:", row[11], "\n")                     
     else:
         print(f"No flights found for Pilot ID {pilot_id}.")
 
@@ -106,7 +112,8 @@ def retrieve_departures_between_datetimes(cursor, start_and_end_datetimes):
     query = """
             SELECT flight.flight_id, flight.departure_date_and_time, destination.city, destination.country, destination.airport_code,
                    aircraft.model, aircraft.Airline, aircraft.capacity,
-                   pilot.first_name, pilot.last_name, pilot.license_number
+                   pilot.first_name, pilot.last_name,
+                   flight.status, flight.origin
             FROM flight
             NATURAL JOIN destination
             NATURAL JOIN aircraft
@@ -123,7 +130,8 @@ def retrieve_departures_between_datetimes(cursor, start_and_end_datetimes):
                 print("Departure Time:", row[1])
                 print("Destination:", row[2], row[3], "Airport Code:", row[4])
                 print("Aircraft:", row[5], row[6], "Capacity:", row[7])                 
-                print("Pilot:", row[8], row[9], "License Number:", row[10], "\n")
+                print("Pilot:", row[8], row[9])
+                print("Status:", row[10], "Origin:", row[11], "\n")
     else:
             print("No flights found in the specified date range.")
 
@@ -132,7 +140,8 @@ def retrieve_arrivals_between_datetimes(cursor, start_and_end_datetimes):
     query = """
             SELECT flight.flight_id, flight.arrival_date_and_time, destination.city, destination.country, destination.airport_code,
                    aircraft.model, aircraft.Airline, aircraft.capacity,
-                   pilot.first_name, pilot.last_name, pilot.license_number
+                   pilot.first_name, pilot.last_name,
+                   flight.status, flight.origin
             FROM flight
             NATURAL JOIN destination
             NATURAL JOIN aircraft
@@ -149,7 +158,20 @@ def retrieve_arrivals_between_datetimes(cursor, start_and_end_datetimes):
                 print("Arrival Time:", row[1])
                 print("Destination:", row[2], row[3], "Airport Code:", row[4])
                 print("Aircraft:", row[5], row[6], "Capacity:", row[7])                 
-                print("Pilot:", row[8], row[9], "License Number:", row[10], "\n")
+                print("Pilot:", row[8], row[9])
+                print("Status:", row[10], "Origin:", row[11], "\n")
     else:
             print("No flights found in the specified date range.")
+
+def update_flight_schedule(cursor, flight_data):
+    # Flight data will be input by the user in the wrong order for the update query, so we need to rearrange it.
+    flight_id, departure_date, arrival_date, status = flight_data
+    query_values = (departure_date, arrival_date, status, flight_id)
+    query = """
+        UPDATE flight
+        SET departure_date_and_time = ?, arrival_date_and_time = ?, status = ?
+        WHERE flight_id = ?
+    """
+    cursor.execute(query, query_values)
+    print("Flight schedule updated successfully.")
 

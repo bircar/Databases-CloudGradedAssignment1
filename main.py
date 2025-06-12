@@ -24,18 +24,18 @@ cursor = conn.cursor()
 
 # Flag to control the menu loop
 is_menu_active = True
-print("Welcome to the Flight Management System!")
+print("\nWelcome to the Flight Management System!")
 
 while is_menu_active:
-    input_choice = input("""What would you like to do? Enter the number of the action you want to perform:\n
+    input_choice = input("""\nWhat would you like to do? Enter the number of the action you want to perform:\n
     1 : Retrieve flights by criteria:
     2 : Add a new flight:
     3 : Assign a pilot to a flight:
     4 : View a pilot's schedule:
     5 : View all flights departing within time period:
-    6 : View all flights arriving within time period:     
-                                
+    6 : View all flights arriving within time period:                    
     7 : Update flight schedule:
+                         
     8 : Delete a flight:
     9 : View all flights:
     10 : Retrieve number of flights by criteria:
