@@ -15,7 +15,7 @@ def retrieve_flights_by_destination(cursor, destination_id):
         WHERE destination_id = ?
     """
     cursor.execute(query, destination_id)
-    # Skip primary keys to only provide user friendly information
+    # By selecting the 
     for row in cursor.fetchall():
         print("Flight ID:", row[0])
         print("Destination:", row[1], row[2], "Airport Code:", row[3])

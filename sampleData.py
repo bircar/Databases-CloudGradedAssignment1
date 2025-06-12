@@ -41,20 +41,20 @@ aircrafts = [
 ]
 
 flights = [
-    (1, 1, 2, 1),   # John Smith flying to Paris with Boeing 737
-    (2, 2, 3, 2),   # Alice Brown flying to New York with Airbus A320
-    (3, 3, 4, 3),   # David Wilson flying to Dubai with Boeing 777
-    (4, 4, 5, 4),   # Karen Jones flying to Tokyo with Airbus A380
-    (5, 5, 6, 5),   # Michael Lee flying to Toronto with Embraer E190
-    (6, 6, 7, 6),   # Sophia Taylor flying to Berlin with Bombardier CRJ900
-    (7, 7, 8, 7),   # Chris Miller flying to Rome with Boeing 747
-    (8, 8, 9, 8),   # Emma Davis flying to Madrid with Airbus A350
-    (9, 9, 10, 9),  # Robert Clark flying to Sydney with McDonnell Douglas MD-88
-    (10, 10, 1, 10), # Olivia Moore flying to London with ATR 72
-    (11, 1, 3, 1),   # John Smith flying to New York with Boeing 737 
-    (12, 2, 2, 2),   # Alice Brown flying to Paris with Airbus A320 
-    (13, 3, 2, 3),   # David Wilson flying to Paris with Boeing 777 
-    (14, 4, 5, 1),   # Karen Jones flying to Tokyo with Boeing 737 
-    (15, 5, 6, 2)    # Michael Lee flying to Toronto with Airbus A320
+    (1, 1, 2, 1, "2025-06-11 08:00:00", "2025-06-11 10:00:00"),   # John Smith flying to Paris with Boeing 737
+    (2, 2, 3, 2, "2025-06-12 09:30:00", "2025-06-12 13:00:00"),   # Alice Brown flying to New York with Airbus A320
+    (3, 3, 4, 3, "2025-06-13 14:00:00", "2025-06-13 22:00:00"),   # David Wilson flying to Dubai with Boeing 777
+    (4, 4, 5, 4, "2025-06-14 07:00:00", "2025-06-14 19:00:00"),   # Karen Jones flying to Tokyo with Airbus A380
+    (5, 5, 6, 5, "2025-06-15 12:00:00", "2025-06-15 16:00:00"),   # Michael Lee flying to Toronto with Embraer E190
+    (6, 6, 7, 6, "2025-06-16 11:00:00", "2025-06-16 13:30:00"),   # Sophia Taylor flying to Berlin with Bombardier CRJ900
+    (7, 7, 8, 7, "2025-06-17 15:00:00", "2025-06-17 17:00:00"),   # Chris Miller flying to Rome with Boeing 747
+    (8, 8, 9, 8, "2025-06-18 10:00:00", "2025-06-18 12:30:00"),   # Emma Davis flying to Madrid with Airbus A350
+    (9, 9, 10, 9, "2025-06-19 20:00:00", "2025-06-20 06:00:00"),  # Robert Clark flying to Sydney with McDonnell Douglas MD-88
+    (10, 10, 1, 10, "2025-06-20 06:00:00", "2025-06-20 14:00:00"), # Olivia Moore flying to London with ATR 72
+    (11, 1, 3, 1, "2025-06-21 08:00:00", "2025-06-21 16:00:00"),   # John Smith flying to New York with Boeing 737 
+    (12, 2, 2, 2, "2025-06-22 09:00:00", "2025-06-22 11:00:00"),   # Alice Brown flying to Paris with Airbus A320 
+    (13, 3, 2, 3, "2025-06-23 10:00:00", "2025-06-23 12:00:00"),   # David Wilson flying to Paris with Boeing 777 
+    (14, 4, 5, 1, "2025-06-24 07:00:00", "2025-06-24 19:00:00"),   # Karen Jones flying to Tokyo with Boeing 737 
+    (15, 5, 6, 2, "2025-06-25 12:00:00", "2025-06-25 16:00:00")    # Michael Lee flying to Toronto with Airbus A320
 ]
 

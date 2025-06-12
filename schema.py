@@ -34,6 +34,8 @@ def initialiseTables(conn):
             pilot_id INTEGER NOT NULL,
             destination_id INTEGER NOT NULL,
             aircraft_id INTEGER,
+            departure_time DATETIME,
+            arrival_time DATETIME,
             FOREIGN KEY (pilot_id) REFERENCES pilot(pilot_id),                   
             FOREIGN KEY (destination_id) REFERENCES destination(destination_id),
             FOREIGN KEY (aircraft_id) REFERENCES aircraft(aircraft_id)

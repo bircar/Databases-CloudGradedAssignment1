@@ -20,18 +20,18 @@ print("Database populated successfully")
 
 cursor = conn.cursor()
 
-
 is_menu_active = True
 print("Welcome to the Flight Management System!")
 
 while is_menu_active:
     input_choice = input("""What would you like to do? Enter the number of the action you want to perform:\n
-    1 : Retrieve flights by destination:\n 
-    2 : Add a new flight:\n
-    3 : Assign a pilot to a flight:\n
-    4 : View a pilot's schedule:\n
+    1 : Retrieve flights by destination:
+    2 : Add a new flight:
+    3 : Assign a pilot to a flight:
+    4 : View a pilot's schedule:
+    5 : View all flights departing within time period:
         
-    Type x to close.""")
+    Type x to close.\n""")
     if input_choice == "x":
         print("Exiting the program")
         is_menu_active = False
@@ -44,5 +44,6 @@ while is_menu_active:
     conn.commit()
     continue
 
+cursor.close()
 conn.close()
 print("Database connection closed")
