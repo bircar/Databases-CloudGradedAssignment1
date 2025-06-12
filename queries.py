@@ -3,19 +3,18 @@
 
 
 # This query retrieves all columns from the flight, destination, aircraft, and pilot tables where the destination_id matches the argument provided
-def retrieve_flights_by_destination(cursor, destination_id):
+def retrieve_flights_by_destination(cursor, airport_code):
     query = """
         SELECT flight.flight_id, destination.city, destination.country, destination.airport_code,
-               aircraft.model, aircraft.manufacturer, aircraft.capacity,
+               aircraft.model, aircraft.Airline, aircraft.capacity,
                pilot.first_name, pilot.last_name, pilot.license_number
         FROM flight
         NATURAL JOIN destination
         NATURAL JOIN aircraft
         NATURAL JOIN pilot
-        WHERE destination_id = ?
+        WHERE destination.airport_code = ?
     """
-    cursor.execute(query, destination_id)
-    # By selecting the 
+    cursor.execute(query, airport_code)
     for row in cursor.fetchall():
         print("Flight ID:", row[0])
         print("Destination:", row[1], row[2], "Airport Code:", row[3])
@@ -45,7 +44,7 @@ def assign_pilot_to_flight(cursor, pilot_and_flight_id):
 def view_pilot_schedule(cursor, pilot_id):
     query = """
         SELECT flight.flight_id, destination.city, destination.country, destination.airport_code,
-               aircraft.model, aircraft.manufacturer, aircraft.capacity,
+               aircraft.model, aircraft.Airline, aircraft.capacity,
                pilot.first_name, pilot.last_name, pilot.license_number
         FROM flight
         NATURAL JOIN destination
@@ -65,3 +64,29 @@ def view_pilot_schedule(cursor, pilot_id):
             print("Pilot:", row[7], row[8], "License Number:", row[9], "\n")
     else:
         print(f"No flights found for Pilot ID {pilot_id}.")
+
+# This query retrieves flights scheduled between the two specified date/time values, ordered by earliest departure time.
+def retrieve_departures_between_datetimes(cursor, start_and_end_datetimes):
+    query = """
+            SELECT flight.flight_id, flight.departure_date_and_time, destination.city, destination.country, destination.airport_code,
+                   aircraft.model, aircraft.Airline, aircraft.capacity,
+                   pilot.first_name, pilot.last_name, pilot.license_number
+            FROM flight
+            NATURAL JOIN destination
+            NATURAL JOIN aircraft
+            NATURAL JOIN pilot
+            WHERE departure_date_and_time BETWEEN ? AND ?
+            GROUP BY departure_date_and_time
+        """
+    cursor.execute(query, start_and_end_datetimes)
+    flights = cursor.fetchall()
+        
+    if flights:
+            for row in flights:
+                print("Flight ID:", row[0])
+                print("Departure Time:", row[1])
+                print("Destination:", row[2], row[3], "Airport Code:", row[4])
+                print("Aircraft:", row[5], row[6], "Capacity:", row[7])                 
+                print("Pilot:", row[8], row[9], "License Number:", row[10], "\n")
+    else:
+            print("No flights found in the specified date range.")
