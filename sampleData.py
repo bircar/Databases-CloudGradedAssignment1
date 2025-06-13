@@ -27,7 +27,7 @@ destinations = [
     (10, "Sydney", "Australia", "SYD")
 ]
 
-aircrafts = [
+aircraft = [
     (1, "Delta Air Lines", "Boeing 737", 160),
     (2, "American Airlines", "Airbus A320", 150),
     (3, "British Airways", "Boeing 777", 300),
