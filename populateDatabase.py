@@ -4,7 +4,7 @@ from dbConnection import get_connection
 # This function populates the database with the sample data.
 def populate_database():
     conn = get_connection()
-    
+    #IGNORE is used to prevent duplicate entries in the database, which would cause an error if the same data is inserted again.
     conn.executemany("INSERT OR IGNORE INTO pilot (pilot_id, first_name, last_name, license_number) VALUES (?, ?, ?, ?)", pilots)
     conn.executemany("INSERT OR IGNORE INTO destination (destination_id, city, country, airport_code) VALUES (?, ?, ?, ?)", destinations)
     conn.executemany("INSERT OR IGNORE INTO aircraft (aircraft_id, Airline, model, capacity) VALUES (?, ?, ?, ?)", aircrafts)
