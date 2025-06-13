@@ -5,7 +5,7 @@ def initialiseTables(conn):
             pilot_id INTEGER PRIMARY KEY AUTOINCREMENT,
             first_name VARCHAR(20),
             last_name VARCHAR(20),
-            license_number VARCHAR(5)
+            license_number VARCHAR(5) UNIQUE
         )
     """)
 
@@ -14,7 +14,7 @@ def initialiseTables(conn):
             destination_id INTEGER PRIMARY KEY AUTOINCREMENT,
             city VARCHAR(100),
             country VARCHAR(100),
-            airport_code VARCHAR(3)
+            airport_code VARCHAR(3) UNIQUE
         )
     """)
 

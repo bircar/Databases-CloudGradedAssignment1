@@ -1,5 +1,4 @@
-import sqlite3
+# This module is responsible for establishing a connection to the SQLite database. 
 
-# Try/catch block to handle potential errors??
 def get_connection(db_name='flights'):
     return sqlite3.connect(db_name)

@@ -6,9 +6,6 @@ from schema import initialiseTables
 from populateDatabase import populate_database
 from queries import *
 from queryHandler import *
-#DELETE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-import os
-
 
 conn = get_connection()
 print("Database connection established")
@@ -36,11 +33,10 @@ while is_menu_active:
     6 : View all flights arriving within time period:                    
     7 : Update flight schedule:
     8 : Delete a flight:
-                         
     9 : View all flights:
     10 : Retrieve number of flights by criteria:
     
-    Type x to close.\n""")
+    Type 'x' to close.\n""")
     if input_choice == "x":
         print("Exiting the program")
         is_menu_active = False
@@ -53,8 +49,10 @@ while is_menu_active:
 
     # If the selected query is valid, get the required criteria from the user
     criteria = get_criteria(input_choice)
-    selected_query(cursor, criteria)
 
+    # Execute the selected query with the provided criteria
+    selected_query(cursor, criteria)
+    
     # Commit the changes to the database after successful execution of the query
     conn.commit()
     continue

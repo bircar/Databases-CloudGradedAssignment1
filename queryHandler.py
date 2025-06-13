@@ -13,6 +13,7 @@ chosen_query = {
     "7": update_flight_schedule,
     "8": delete_flight,
     "9": view_all_flights,
+    "10": count_flights_by_criteria,
     }
 
 
@@ -27,6 +28,7 @@ required_criteria = {
     "7": ["Enter flight ID to update: ", "Enter new departure date and time (YYYY-MM-DD HH:MM:SS): ", "Enter new arrival date and time (YYYY-MM-DD HH:MM:SS): ", "Enter new flight status ('ON TIME', 'DELAYED' or 'DEPARTED'): "],
     "8": ["Enter flight ID to delete: "],
     "9": [],  # No criteria needed for viewing all flights
+    "10": ["Select search field: ('destination', 'origin', 'airline', 'departure_date'): ", "Enter the value to search for:\n(Use airport codes, date format must be YYYY-MM-DD)"],
     }
 
 def handle_query(input_choice):

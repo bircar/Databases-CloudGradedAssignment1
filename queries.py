@@ -2,7 +2,7 @@
 # data in the database and prints the results in a user-friendly format.
 
 
-# This query retrieves flights based on generalized criteria such as destination, airline, or departure date, ordered by departure date and time.
+# This query retrieves flights based on specified criteria such as destination, airline, or departure date, ordered by departure date and time.
 def retrieve_flights_by_criteria(cursor, criteria_and_value):
     
     # Map user input search field to actual DB columns
@@ -50,7 +50,7 @@ def retrieve_flights_by_criteria(cursor, criteria_and_value):
     results = cursor.fetchall()
     if results:
         for row in results:
-            print("Flight ID:", row[0])
+            print("\nFlight ID:", row[0])
             print("Departure Time:", row[1], "Arrival Time:", row[2])
             print("Destination:", row[3], row[4], "Airport Code:", row[5])
             print("Aircraft:", row[6], row[7], "Capacity:", row[8])
@@ -206,3 +206,42 @@ def view_all_flights(cursor, placeholder): # Placeholder is requir to match requ
             print("Origin:", row[7], "\n")
     else:
         print("\nNo flights found in the database.")
+
+# This function counts the number of flights in the database that match the specified criteria, such as destination, origin, airline, or departure date.
+def count_flights_by_criteria(cursor, criteria_and_value):
+    # Map user input search field to actual DB columns
+    criteria_map = {
+        'destination': 'destination.airport_code',
+        'origin': 'flight.origin',
+        'airline': 'aircraft.Airline',
+        'departure_date': 'flight.departure_date_and_time',
+    }
+
+    db_criteria = criteria_map[criteria_and_value[0]]
+    if not db_criteria:
+        print(f"Invalid criteria: {criteria_and_value[0]}")
+        return
+
+    if criteria_and_value[0] == 'departure_date':
+        query = f"""
+            SELECT COUNT(*)
+            FROM flight
+            NATURAL JOIN destination
+            NATURAL JOIN aircraft
+            NATURAL JOIN pilot
+            WHERE strftime('%Y-%m-%d', flight.departure_date_and_time) = ?
+        """
+        cursor.execute(query, (criteria_and_value[1],))
+    else:
+        query = f"""
+            SELECT COUNT(*)
+            FROM flight
+            NATURAL JOIN destination
+            NATURAL JOIN aircraft
+            NATURAL JOIN pilot
+            WHERE {db_criteria} = ?
+        """
+        cursor.execute(query, (criteria_and_value[1],))
+    
+    count = cursor.fetchone()[0]
+    print(f"\nNumber of flights matching the criteria '{criteria_and_value[0]}': {count}")
